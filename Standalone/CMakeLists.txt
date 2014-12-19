@@ -27,6 +27,7 @@ endif(WIN32)
 target_link_libraries(LunarGOO
                       glslangFrontend
                       GLSLBackend
+                      MetalBackend
                       core
                       ${GLSLANGLIBS}
                       ${LLVMLIBS}
