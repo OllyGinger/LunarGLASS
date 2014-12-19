@@ -37,6 +37,7 @@
 // Author: John Kessenich, LunarG
 //
 //===----------------------------------------------------------------------===//
+#pragma once
 
 #include "Core/PrivateManager.h"
 #include "GlslTranslator.h"
@@ -368,7 +369,7 @@ namespace gla {
 		void emitGlaMultiInsert(std::ostringstream& out, const llvm::IntrinsicInst* inst);
 		void emitMapGlaIOIntrinsic(const llvm::IntrinsicInst* llvmInstruction, bool input);
 		void emitInvariantDeclarations(llvm::Module&);
-		void buildFullShader();
+		virtual void buildFullShader();
 
 		// 'gep' is potentially a gep, either an instruction or a constantExpr.
 		// See which one, if any, and return it.

@@ -74,7 +74,7 @@
 #include "MetalTarget.h"
 
 // glslang includes
-#include "GlslTarget.h"
+#include "MetalTarget.h"
 
 // LLVM includes
 #pragma warning(push, 1)
@@ -203,39 +203,7 @@ void gla::ReleaseMetalBackEnd(gla::BackEnd* backEnd)
     delete backEnd;
 }
 
-//
-// Implement the Bottom IR -> GLSL translator
-//
-
-namespace gla {
-    class MetalTarget;
-};
-
-class MetaType {
-public:
-    MetaType() : precision(gla::EMpNone), matrix(false), notSigned(false), block(false), mdAggregate(0), mdSampler(0) { }
-    std::string name;
-    gla::EMdPrecision precision;
-    bool matrix;
-    bool notSigned;
-    bool block;
-    const llvm::MDNode* mdAggregate;
-    const llvm::MDNode* mdSampler;
-};
-
 class Assignment;
-
-class gla::MetalTarget : public gla::GlslTarget{
-public:
-    MetalTarget(Manager* m, bool obfuscate, bool filterInactive, int substitutionLevel) :
-		GlslTarget(m, obfuscate, filterInactive, substitutionLevel)
-    {
-    }
-
-    virtual ~MetalTarget()
-    {
-    }
-};
 
 //
 // To build up and hold an assignment until the entire statement is known, so it
@@ -991,3 +959,22 @@ void StripSuffix(std::string& name, const char* suffix)
 }
 
 }; // end anonymous namespace
+
+
+
+
+
+
+void gla::MetalTarget::buildFullShader()
+{
+	// Comment line about LunarGOO
+	fullShader << "// LunarGOO Metal output" << std::endl;
+	
+	// Add standard includes that are used in all metal shaders
+	fullShader << "#include <metal_stdlib>" << std::endl;
+	fullShader << "#include <simd/simd.h>" << std::endl;
+	fullShader << "using namespace metal;" << std::endl << std::endl;
+	
+	// Body of shader
+	fullShader << globalStructures.str().c_str() << globalDeclarations.str().c_str() << shader.str().c_str();
+}

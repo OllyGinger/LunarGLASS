@@ -7,7 +7,6 @@ set(SOURCES
 
 set(HEADERS
     MetalManager.h
-    MetalTranslator.h
     MetalTarget.h)
 
 add_library(MetalBackend STATIC ${SOURCES} ${HEADERS})

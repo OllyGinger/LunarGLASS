@@ -37,8 +37,9 @@
 // Author: John Kessenich, LunarG
 //
 //===----------------------------------------------------------------------===//
+#pragma once
 
-#include "Core/PrivateManager.h"
+#include "GlslTarget.h"
 
 namespace gla {
 
@@ -48,4 +49,22 @@ namespace gla {
 
     gla::BackEnd* GetMetalBackEnd();
     void ReleaseMetalBackEnd(gla::BackEnd*);
+
+	class MetalTarget : public GlslTarget
+	{
+	public:
+		MetalTarget(Manager* m, bool obfuscate, bool filterInactive, int substitutionLevel) :
+			GlslTarget(m, obfuscate, filterInactive, substitutionLevel)
+		{
+		}
+
+		virtual ~MetalTarget()
+		{
+		}
+
+		void buildFullShader() override;
+	};
+
 };
+
+

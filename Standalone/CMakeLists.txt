@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-include_directories(.. ../Core ${GLSLANGINCLUDES} ${LLVMINCLUDES})
+include_directories(.. ../Core ${GLSLANGINCLUDES} ../Backends/GLSL ${LLVMINCLUDES})
 if(WIN32)
     include_directories(${GLSLANG_PATH}/glslang/OSDependent/Windows)
 elseif(UNIX)
