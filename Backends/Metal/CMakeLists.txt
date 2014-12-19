@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-include_directories(. ../.. ../../Core ${GLSLANGINCLUDES} ${LLVMINCLUDES})
+include_directories(. ../.. ../../Core ../GLSL ${GLSLANGINCLUDES} ${LLVMINCLUDES})
 
 set(SOURCES
     BottomToMetal.cpp)

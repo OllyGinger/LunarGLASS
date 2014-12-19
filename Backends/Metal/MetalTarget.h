@@ -39,11 +39,11 @@
 //===----------------------------------------------------------------------===//
 
 #include "Core/PrivateManager.h"
-#include "MetalTranslator.h"
 
 namespace gla {
 
-    MetalTranslator* GetMetalTranslator(Manager*, bool obfuscate, bool filterInactive = false, int substitutionLevel = 1);
+	class GlslTranslator;
+    GlslTranslator* GetMetalTranslator(Manager*, bool obfuscate, bool filterInactive = false, int substitutionLevel = 1);
     void ReleaseMetalTranslator(gla::BackEndTranslator*);
 
     gla::BackEnd* GetMetalBackEnd();

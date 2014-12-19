@@ -98,7 +98,7 @@ protected:
         context = 0;
     }
 
-    MetalTranslator* glslBackEndTranslator;
+    GlslTranslator* glslBackEndTranslator;
     bool obfuscate;
     bool filterInactive;
     int substitutionLevel;
